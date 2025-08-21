@@ -101,3 +101,11 @@ try (Service python : env.python()) {
     // ...
 }
 ```
+
+## Limitations
+
+The current maximum size of an image that can be backed by an `ShmImg` is `2^31 - 1` bytes, 
+
+i.e. `ShmImg.copyOf( ArrayImgs.unsignedShorts( 1024, 1024, 1023 ) );` is possible,
+
+while `ShmImg.copyOf( ArrayImgs.unsignedShorts( 1024, 1024, 1024 ) );` leads to an Exception.
